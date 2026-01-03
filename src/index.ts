@@ -1,20 +1,14 @@
 import dotenv from 'dotenv';
-dotenv.config({
-  path: `${process.cwd()}/.env`,
-});
 
-switch (process.env.SERVER) {
-  default:
+dotenv.config();
+
+const serverType = process.env.SERVER || 'EXPRESS';
+
+console.log(`Starting server: ${serverType}`);
+
+switch (serverType) {
   case 'EXPRESS':
+  default:
     await import('./servers/express/index.js');
-    break;
-  // case 'HAPIJS':
-  //   await import('./servers/hapijs.js');
-  //   break;
-  // case 'FASTIFY':
-  //   await import('./servers/fastify.js');
-  //   break;
-  // case 'NESTJS':
-  //   await import('./servers/nestjs/index.js');
     break;
 }
